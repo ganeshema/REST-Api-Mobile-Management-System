@@ -100,7 +100,8 @@ public class MobileServiceImpl implements MobileService {
             MobileVo mobileVo = new MobileVo();
             BeanUtils.copyProperties(mobile, mobileVo);
             return mobileVo;
-        }).orElseThrow(()->new MobileNotFoundException("mobile not found by id :"+mid));
+        }).orElseThrow(()->{ throw new MobileNotFoundException("Mobile","Id",String.valueOf(mid));});
+
 
     }
 
@@ -108,7 +109,7 @@ public class MobileServiceImpl implements MobileService {
     public void deleteById(int mid) {
         Optional<MobileEntity> optional=mobileRepository.findById(mid);
         optional.ifPresentOrElse(mobile->mobileRepository.delete(mobile),
-                ()->{ throw new MobileNotFoundException("mobile not found by id :"+mid);});
+                ()->{ throw new MobileNotFoundException("Mobile","Id",String.valueOf(mid));});
                 }
 
     @Override

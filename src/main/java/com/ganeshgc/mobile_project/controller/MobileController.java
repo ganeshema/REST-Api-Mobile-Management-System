@@ -3,6 +3,7 @@ package com.ganeshgc.mobile_project.controller;
 import com.ganeshgc.mobile_project.Dto.MobileVo;
 import com.ganeshgc.mobile_project.service.MobileService;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class MobileController {
     private MobileService mobileService;
 
     @PostMapping("/mobiles")
-    public void saveMobile(@RequestBody MobileVo mobileVo){
+    public void saveMobile(@Valid @RequestBody MobileVo mobileVo){
         mobileService.saveMobile(mobileVo);
     }
     @GetMapping("/mobiles/{mid}")
@@ -24,7 +25,7 @@ public class MobileController {
         return mobileVo;
     }
 
-    @GetMapping()
+    @GetMapping("/mobiles")
     public List<MobileVo> findAllMobiles(){
         List<MobileVo> mobiles=mobileService.findAllMobiles();
         return mobiles;
@@ -35,7 +36,7 @@ public class MobileController {
     }
 
     @PutMapping("/mobiles")
-    public void updateMobile(@RequestBody MobileVo mobileVo) {
+    public void updateMobile(@RequestBody @Valid MobileVo mobileVo) {
         mobileService.updateMobile(mobileVo);
     }
     }
