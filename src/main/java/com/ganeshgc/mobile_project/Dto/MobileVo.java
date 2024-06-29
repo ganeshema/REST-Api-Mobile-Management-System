@@ -1,9 +1,20 @@
 package com.ganeshgc.mobile_project.Dto;
 
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
+import org.springframework.stereotype.Service;
+@Data
 public class MobileVo {
     private int mid;
+    @NotEmpty
+    @Size(min=3, message = "Vendor name should be more than 3 characters")
     private String vendor;
+    @NotEmpty(message = "color should not be empty")
     private String color;
+    @DecimalMin(value = "0.1", inclusive = true)
     private double price;
     private String description;
 
