@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/api/v2/mobiles")
 public class MobileControllerV2 {
     @Autowired
     private MobileService mobileService;
 
 
-    @GetMapping("/mobiles")
+    @GetMapping
     public MobileResponse findAllMobiles(@RequestParam(name = "pageNo", defaultValue = "0", required = false) int pageNo,
                                          @RequestParam(name = "pageSize", defaultValue = "10", required = false) int pageSize,
                                          @RequestParam(name = "sortBy", defaultValue = "vendor", required = false)String sortBy,
